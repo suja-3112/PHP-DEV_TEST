@@ -28,13 +28,22 @@ class Checkout extends Layout
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>Product Thumbnail</td>
+                                        <td><img src="highres-assets/product.jpg" alt="Product Thumbnail" class="order-summary__image"></td>
                                         <td>Lorem Widget</td>
                                         <td>1</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+                    <!-- Beta Program Checkbox -->
+                    <div class="form-field form-field--checkbox">
+                        <label for="beta_program_opt_in" class="form-field__label">
+                            <input type="checkbox" name="beta_program_opt_in" id="beta_program_opt_in" class="checkbox">
+                            With our "Rise & Shine" beta program, you get early access to new
+                            features, but they may not always work perfectly. You can change your beta
+                            preference at any time after you join.
+                        </label>
                     </div>
                     <div class="frame">
                         <h2 class="frame__title">Account Details</h2>
@@ -81,12 +90,22 @@ class Checkout extends Layout
                                     <input type="text" name="billing_address_last_name" id="billing_address_last_name" class="entry" value="Gauthier" size="17" maxlength="255" />
                                 </div>
                             </div>
-                            <div class="form-field form-field--required">
-                                <label class="form-field__label" for="billing_address_line1">Street Address: <span class="form-field__label-required"> (required)</span></label>
+                            <!-- Address Line 1 (Required) -->
+                            <div class="form-field form-field--required"> 
+                                <label class="form-field__label" for="billing_address_line1">
+                                    Address Line 1: <span class="form-field__label-required">(required)</span>
+                                </label>
                                 <div class="form-field__contents">
-                                    <div class="textarea__container">
-                                        <textarea name="billing_address_line1" id="billing_address_line1" class="textarea" rows="2" cols="35"></textarea>
-                                    </div>
+                                    <input type="text" name="billing_address_line1" id="billing_address_line1" class="entry" required>
+                                </div>
+                            </div>
+                            <!-- Address Line 2 (Optional) -->
+                            <div class="form-field"> 
+                                <label class="form-field__label" for="billing_address_line2">
+                                    Address Line 2: <span class="form-field__label-optional">(optional)</span>
+                                </label>
+                                <div class="form-field__contents">
+                                    <input type="text" name="billing_address_line2" id="billing_address_line2" class="entry">
                                 </div>
                             </div>
                             <div class="form-field form-field--required">
@@ -102,6 +121,9 @@ class Checkout extends Layout
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="form-field form-field--submit">
+                        <button type="submit" class="button button--primary">Place Order</button>
                     </div>
                 </form>
             HTML;
