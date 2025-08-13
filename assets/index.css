@@ -109,3 +109,10 @@ main {
   border-bottom: 1px solid #eee;
   padding: 0.5rem;
 }
+
+.order-summary__image {
+  width: 80px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 4px;
+}
