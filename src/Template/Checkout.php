@@ -36,6 +36,15 @@ class Checkout extends Layout
                             </table>
                         </div>
                     </div>
+                    <!-- Beta Program Checkbox -->
+                    <div class="form-field form-field--checkbox">
+                        <label for="beta_program_opt_in" class="form-field__label">
+                            <input type="checkbox" name="beta_program_opt_in" id="beta_program_opt_in" class="checkbox">
+                            With our "Rise & Shine" beta program, you get early access to new
+                            features, but they may not always work perfectly. You can change your beta
+                            preference at any time after you join.
+                        </label>
+                    </div>
                     <div class="frame">
                         <h2 class="frame__title">Account Details</h2>
                         <div class="frame__contents">
