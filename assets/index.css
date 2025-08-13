@@ -86,8 +86,7 @@ main {
   padding: 0.5rem 0 0;
 }
 
-.entry,
-.textarea {
+.entry{
   padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 0.25rem;
@@ -95,8 +94,7 @@ main {
   width: 100%;
 }
 
-.entry:focus,
-.textarea:focus {
+.entry:focus {
   outline: 0.125rem solid hsl(206 71% 53%);
   box-shadow: inset 0 0.125rem 0.25rem hsl(206 71% 53% / 20%);
 }
