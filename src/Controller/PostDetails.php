@@ -8,12 +8,6 @@ use silverorange\DevTest\Model;
 
 class PostDetails extends Controller
 {
-    /**
-     * TODO: When this property is assigned in loadData this PHPStan override
-     * can be removed.
-     *
-     * @phpstan-ignore property.unusedType
-     */
     private ?Model\Post $post = null;
 
     public function getContext(): Context
@@ -25,11 +19,21 @@ class PostDetails extends Controller
             $context->content = "A post with id {$this->params[0]} was not found.";
         } else {
             $context->title = $this->post->title;
-            $context->content = $this->params[0];
+            $context->postTitle = $this->post->title;
+            $context->postAuthor = $this->post->author;
+            $context->postBodyHtml = $this->convertMarkdownToHtml($this->post->body);
         }
 
         return $context;
     }
+
+    // convert Markdown to HTML
+    protected function convertMarkdownToHtml(string $markdown): string
+    {
+        $converter = new \League\CommonMark\CommonMarkConverter();
+        return $converter->convertToHtml($markdown);
+    }
+
 
     public function getTemplate(): Template\Template
     {
@@ -51,7 +55,29 @@ class PostDetails extends Controller
 
     protected function loadData(): void
     {
-        // TODO: Load post from database here. $this->params[0] is the post id.
-        $this->post = null;
+        $postId = $this->params[0] ?? null;
+        if ($postId === null) {
+            $this->post = null;
+            return;
+        }
+
+        $stmt = $this->db->prepare('SELECT * FROM posts WHERE id = :id');
+        $stmt->execute(['id' => $postId]);
+        $data = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+        if (!$data) {
+            $this->post = null;
+            return;
+        }
+
+        $post = new \silverorange\DevTest\Model\Post();
+        $post->id = $data['id'];
+        $post->title = $data['title'];
+        $post->body = $data['body'];
+        $post->created_at = $data['created_at'];
+        $post->modified_at = $data['modified_at'];
+        $post->author = $data['author'];
+
+        $this->post = $post;
     }
 }
