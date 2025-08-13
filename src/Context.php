@@ -10,6 +10,6 @@ class Context
     public ?string $postTitle = null;
     public ?string $postAuthor = null;
     public ?string $postBodyHtml = null;
+    public array $posts = [];
 
-    // You can add more as needed
 }
